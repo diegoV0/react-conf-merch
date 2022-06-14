@@ -1,7 +1,12 @@
-import React from "react";
+import React from 'react';
+import '../styles/components/App.css';
 
 const App = () => {
-  return <div>Hello Fucking Word</div>;
+  return (
+    <div>
+      <h1>Hello Fucking Word</h1>
+    </div>
+  );
 };
 
 export default App;
