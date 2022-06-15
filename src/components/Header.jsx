@@ -1,10 +1,11 @@
 import React from 'react';
+import '../styles/components/Header.css';
 
 const Header = () => {
   return (
-    <div className="header">
-      <h1 className="header-title">React Conf Merch</h1>
-      <div className="header-checkout">Checkout</div>
+    <div className="Header">
+      <h1 className="Header-title">React Conf Merch</h1>
+      <div className="Header-checkout">Checkout</div>
     </div>
   );
 };
