@@ -7,11 +7,11 @@ import Payment from '../containers/Payment';
 import Success from '../containers/Success';
 import Layout from '../components/Layout';
 import AppContext from '../context/AppContext';
-import useInitialstate from '../hooks/useInitialSatate';
+import useInitialState from '../hooks/useInitialState';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const App = () => {
-  const initialState = useInitialstate();
+  const initialState = useInitialState();
 
   return (
     <AppContext.Provider value={initialState}>
