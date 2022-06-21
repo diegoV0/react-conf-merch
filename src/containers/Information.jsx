@@ -1,12 +1,11 @@
 import React, { useRef, useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import '../styles/components/Information.css';
 
 const Information = ({ history }) => {
   const { state, addToBuyer } = useContext(AppContext);
   const form = useRef(null);
-
   const { cart } = state;
 
   const handleSubmit = () => {
@@ -34,23 +33,25 @@ const Information = ({ history }) => {
         </div>
         <div className="Information-form">
           <form ref={form}>
-            <input type="text" placeholder="Nombre Completo" name="name" />
-            <input type="text" placeholder="Correo Electronico" name="mail" />
+            <input type="text" placeholder="Nombre completo" name="name" />
+            <input type="text" placeholder="Correo Electronico" name="email" />
             <input type="text" placeholder="Direccion" name="address" />
-            <input type="text" placeholder="Aapto" name="apto" />
-            <input type="text" placeholder="Cuidad" name="city" />
+            <input type="text" placeholder="Apto" name="apto" />
+            <input type="text" placeholder="Ciudad" name="city" />
             <input type="text" placeholder="Pais" name="country" />
             <input type="text" placeholder="Estado" name="state" />
-            <input type="text" placeholder="Codigo Postal" name="cp" />
+            <input type="text" placeholder="Codigo postal" name="cp" />
             <input type="text" placeholder="Telefono" name="phone" />
           </form>
         </div>
         <div className="Information-buttons">
-          <div className="Infortation-next">
+          <div className="Information-back">
             <Link to="/checkout">Regresar</Link>
           </div>
           <div className="Information-next">
-            <button type="button" onClick={handleSubmit()} />
+            <button type="button" onClick={handleSubmit}>
+              Pagar
+            </button>
           </div>
         </div>
       </div>
@@ -59,7 +60,7 @@ const Information = ({ history }) => {
         {cart.map((item) => (
           <div className="Information-item" key={item.title}>
             <div className="Information-element">
-              <h4>Item Name</h4>
+              <h4>{item.title}</h4>
               <span>${item.price}</span>
             </div>
           </div>
