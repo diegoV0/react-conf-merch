@@ -2,7 +2,7 @@ import React from 'react';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import '../styles/components/Map.css';
 
-const Map = () => {
+const Map = (data) => {
   const defaultCenter = [19.4267261, -99.1718706];
 
   return (
