@@ -28,7 +28,7 @@ const useInitialState = () => {
   const addNewOrder = (payload) => {
     setState({
       ...state,
-      orders: [...state.order, payload],
+      orders: [...state.orders, payload],
     });
   };
 
