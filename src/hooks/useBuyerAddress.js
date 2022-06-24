@@ -1,20 +1,18 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const useGoogleAddress = (address) => {
+const useBuyerAddress = (address) => {
   const [map, setMap] = useState({});
-  const API = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyA-d2AGRbY5y2hAw82a8tYSzkgazCU9Orw`;
+  const API =
+    'http://api.positionstack.com/v1/forward?access_key=66268ac0d3ccba1e0ceae24b2db8e33c&query=1600%20Pennsylvania%20Ave%20NW,%20Washington%20DC';
 
   useEffect(async () => {
     console.log(address);
-    try {
-      const response = await axios(API);
-      setMap(response.data.results[0].geometry.location);
-    } catch {
-      console.log('ERROR API GOGOLE MAPS');
-    }
+    const response = await axios.get(API);
+    setMap(response.data.data[0]);
+    console.log(response.data.data[0]);
   }, []);
   return map;
 };
 
-export default useGoogleAddress;
+export default useBuyerAddress;
