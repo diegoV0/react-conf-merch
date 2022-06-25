@@ -8,26 +8,25 @@ const Success = () => {
   const { state } = useContext(AppContext);
   const { buyer } = state;
   const location = useBuyerAddress(buyer[0].address);
-  console.log('location: ');
-  console.log(location);
-  if (location.length)
-    return (
-      <>
-        {location.length > 0 ? (
-          <div className="Success">
-            <div className="Success-content">
-              <h2>{`${buyer[0].name}, Gracias por tu compra`}</h2>
-              <span>Tu pedido lelgara en 3 dias a tu direccion:</span>
-              <div className="Success-map">
-                <Map data={location} />
-              </div>
+  const isLocation = Object.keys(location).length;
+
+  return (
+    <>
+      {isLocation > 0 ? (
+        <div className="Success">
+          <div className="Success-content">
+            <h2>{`${buyer[0].name}, Gracias por tu compra`}</h2>
+            <span>Tu pedido lelgara en 3 dias a tu direccion:</span>
+            <div className="Success-map">
+              <Map data={location} />
             </div>
           </div>
-        ) : (
-          <h1>Cargando ... </h1>
-        )}
-      </>
-    );
+        </div>
+      ) : (
+        <h1>Cargando ... </h1>
+      )}
+    </>
+  );
 };
 
 export default Success;
