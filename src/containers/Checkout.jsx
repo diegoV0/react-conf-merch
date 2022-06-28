@@ -3,18 +3,13 @@ import { Link } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import '../styles/components/Checkout.css';
 
-//cuando se añade más elementos del mismo ID(más de una camiseta, por ejemplo) y quiere borrar una
-//camisa(pero no todas), se eliminan todas las camisas al tener el mismo id
-
 const Checkout = () => {
   const { state, removeToCart } = useContext(AppContext);
 
   const { cart } = state;
   console.log(state);
   const handleRemove = (product) => {
-    console.log('IN REMOVE');
     removeToCart(product);
-    console.log('OUT REMOVE');
   };
 
   const handleSumTotal = () => {

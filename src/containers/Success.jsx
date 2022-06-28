@@ -1,14 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import AppContext from '../context/AppContext';
 import Map from '../components/Map';
 import useBuyerAddress from '../hooks/useBuyerAddress';
 import '../styles/components/Success.css';
 
 const Success = () => {
-  const { state } = useContext(AppContext);
-  const { buyer } = state;
+  const { state, removeAllCart, addNewOrder } = useContext(AppContext);
+  const { buyer, order } = state;
   const location = useBuyerAddress(buyer[0].address);
   const isLocation = Object.keys(location).length;
+
+  useEffect(() => {
+    addNewOrder(order);
+    removeAllCart();
+  }, []);
 
   return (
     <>

@@ -5,11 +5,11 @@ import AppContext from '../context/AppContext';
 import '../styles/components/Payment.css';
 
 const Payment = () => {
-  const { state, addNewOrder } = useContext(AppContext);
+  const { state, addNewOrder, removeAllCart } = useContext(AppContext);
   const { cart, buyer } = state;
   const history = useNavigate();
 
-  const paypalOtions = {
+  const paypalOptions = {
     clientId: process.env.CLIENT_ID_PAYPAL,
     intent: 'capture',
     currency: 'USD',
@@ -28,8 +28,10 @@ const Payment = () => {
         product: cart,
         payment: data,
       };
+      removeAllCart();
       addNewOrder(newOrder);
       history('/checkout/success');
+      console.log(state);
     }
   };
 
@@ -54,7 +56,7 @@ const Payment = () => {
         ))}
         <div className="Payment-button">
           <PayPalButton
-            paypalOptions={paypalOtions}
+            paypalOptions={paypalOptions}
             buttonStyles={buttonStyles}
             amount={handleSumTotal()}
             onPaymentStart={() => console.log('Start Payment')}
