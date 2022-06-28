@@ -7,6 +7,14 @@ const Header = () => {
   const { state } = useContext(AppContext);
   const { cart } = state;
 
+  const checkNumItemsInCart = () => {
+    let itemsInCart = '9+';
+    if (cart.length > 0 && cart.length <= 9) {
+      itemsInCart = cart.length.toString();
+    }
+    return itemsInCart;
+  };
+
   return (
     <div className="Header">
       <h1 className="Header-title">
@@ -16,7 +24,9 @@ const Header = () => {
         <Link to="/checkout">
           <i className="fas fa-shopping-basket" title="Checkout" />
         </Link>
-        {cart.length > 0 && <div className="Header-alert">{cart.length}</div>}
+        {cart.length > 0 && (
+          <div className="Header-alert">{checkNumItemsInCart()}</div>
+        )}
       </div>
     </div>
   );
