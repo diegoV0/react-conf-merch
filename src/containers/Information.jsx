@@ -11,13 +11,49 @@ const Information = () => {
   const history = useNavigate();
 
   const validateFormBuyer = (buyer) => {
-    let validateStatus = false;
-    if (buyer.name.length > 5) {
-      validateStatus = true;
-    } else {
+    let validateStatus = true;
+    let errores = {};
+
+    if (buyer.name.length < 5) {
+      errores.name = 'El campo Nombre Completo es requerido';
+      validateStatus = false;
+    }
+    if (buyer.email.length < 1) {
+      errores.email = 'El campo Correo Electronico es requerido';
+      validateStatus = false;
+    }
+    if (buyer.address.length < 1) {
+      errores.address = 'El campo Direccion es requerido';
+      validateStatus = false;
+    }
+    if (buyer.apto.length < 1) {
+      errores.apto = 'El campo Apto es requerido';
+      validateStatus = false;
+    }
+    if (buyer.city.length < 1) {
+      errores.city = 'El campo Ciudad es requerido';
+      validateStatus = false;
+    }
+    if (buyer.country.length < 1) {
+      errores.country = 'El campo Pais es requerido';
+      validateStatus = false;
+    }
+    if (buyer.state.length < 1) {
+      errores.state = 'El campo Estado es requerido';
+      validateStatus = false;
+    }
+    if (buyer.cp.length < 1) {
+      errores.cp = 'El campo Codigo Postal es requerido';
+      validateStatus = false;
+    }
+    if (buyer.phone.length < 1) {
+      errores.phone = 'El campo Telefono es requerido';
+      validateStatus = false;
+    }
+
+    if (!validateStatus) {
       setErrors({
-        ...errors,
-        name: 'El campo Nombre es requerido',
+        ...errores,
       });
     }
     return validateStatus;
