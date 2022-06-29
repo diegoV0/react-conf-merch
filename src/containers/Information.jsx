@@ -1,13 +1,27 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef, useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import '../styles/components/Information.css';
 
 const Information = () => {
+  const [errors, setErrors] = useState({});
   const { state, addToBuyer } = useContext(AppContext);
   const form = useRef(null);
   const { cart } = state;
   const history = useNavigate();
+
+  const validateFormBuyer = (buyer) => {
+    let validateStatus = false;
+    if (buyer.name.length > 5) {
+      validateStatus = true;
+    } else {
+      setErrors({
+        ...errors,
+        name: 'El campo Nombre es requerido',
+      });
+    }
+    return validateStatus;
+  };
 
   const handleSubmit = () => {
     const formData = new FormData(form.current);
@@ -22,9 +36,14 @@ const Information = () => {
       cp: formData.get('cp'),
       phone: formData.get('phone'),
     };
-    addToBuyer(buyer);
-    console.log(buyer);
-    history('/checkout/payment');
+    if (validateFormBuyer(buyer)) {
+      addToBuyer(buyer);
+      console.log(buyer);
+      history('/checkout/payment');
+    } else {
+      console.log(errors);
+      alert(errors.name);
+    }
   };
 
   return (
