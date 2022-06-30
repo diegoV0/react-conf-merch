@@ -59,6 +59,13 @@ const Information = () => {
     return validateStatus;
   };
 
+  const errorMessage = (messages) => {
+    let messageError = '';
+    const arrayErrors = Object.values(messages);
+    arrayErrors.unshift('ERRORES EN EL FORMULARIO !!!');
+    return (messageError = arrayErrors.join('\n'));
+  };
+
   const handleSubmit = () => {
     const formData = new FormData(form.current);
     const buyer = {
@@ -78,7 +85,7 @@ const Information = () => {
       history('/checkout/payment');
     } else {
       console.log(errors);
-      alert(errors.name);
+      alert(errorMessage(errors));
     }
   };
 
