@@ -5,11 +5,11 @@ import '../styles/components/Checkout.css';
 
 const Checkout = () => {
   const { state, removeToCart } = useContext(AppContext);
-
   const { cart } = state;
   console.log(state);
-  const handleRemove = (product) => {
-    removeToCart(product);
+
+  const handleRemove = (product, indexValue) => {
+    removeToCart(product, indexValue);
   };
 
   const handleSumTotal = () => {
@@ -23,13 +23,16 @@ const Checkout = () => {
     <div className="Checkout">
       <div className="Ckekcout-content">
         {cart.length > 0 ? <h3>Lista de Pedidos</h3> : <h3>Sin edidos ..</h3>}
-        {cart.map((item) => (
+        {cart.map((item, indexValue) => (
           <div className="Checkout-item">
             <div className="Checkout-element">
               <h4>{item.title}</h4>
               <span>${item.price}</span>
             </div>
-            <button type="button" onClick={() => handleRemove(item)}>
+            <button
+              type="button"
+              onClick={() => handleRemove(item, indexValue)}
+            >
               <i className="fas fa-trash" title="Eliminar" />
             </button>
           </div>
