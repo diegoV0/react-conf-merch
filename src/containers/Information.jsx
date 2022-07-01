@@ -2,6 +2,8 @@ import React, { useRef, useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import '../styles/components/Information.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Information = () => {
   const [errors, setErrors] = useState({});
@@ -84,7 +86,8 @@ const Information = () => {
       history('/checkout/payment');
     } else {
       console.log(errors);
-      alert(errorMessage(errors));
+      toast.warning(errorMessage(errors));
+      //alert(errorMessage(errors));
     }
   };
 
@@ -129,6 +132,7 @@ const Information = () => {
           </div>
         ))}
       </div>
+      <ToastContainer autoClose={5000} />
     </div>
   );
 };

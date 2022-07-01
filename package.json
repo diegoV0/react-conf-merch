@@ -29,7 +29,8 @@
     "react-dom": "^18.2.0",
     "react-leaflet": "^4.0.0",
     "react-paypal-button": "^4.1.1",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "react-toastify": "^9.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.18.2",
