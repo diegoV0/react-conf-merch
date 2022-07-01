@@ -16,42 +16,41 @@ const Information = () => {
 
     if (buyer.name.length < 5) {
       errores.name = 'El campo Nombre Completo es requerido';
-      validateStatus = false;
     }
     if (buyer.email.length < 1) {
       errores.email = 'El campo Correo Electronico es requerido';
-      validateStatus = false;
+    } else {
+      const regexp =
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (!regexp.test(String(buyer.email).toLowerCase())) {
+        errores.email =
+          'El Correo Electronico no tiene una estructura correcta.';
+      }
     }
     if (buyer.address.length < 1) {
       errores.address = 'El campo Direccion es requerido';
-      validateStatus = false;
     }
     if (buyer.apto.length < 1) {
       errores.apto = 'El campo Apto es requerido';
-      validateStatus = false;
     }
     if (buyer.city.length < 1) {
       errores.city = 'El campo Ciudad es requerido';
-      validateStatus = false;
     }
     if (buyer.country.length < 1) {
       errores.country = 'El campo Pais es requerido';
-      validateStatus = false;
     }
     if (buyer.state.length < 1) {
       errores.state = 'El campo Estado es requerido';
-      validateStatus = false;
     }
     if (buyer.cp.length < 1) {
       errores.cp = 'El campo Codigo Postal es requerido';
-      validateStatus = false;
     }
     if (buyer.phone.length < 1) {
       errores.phone = 'El campo Telefono es requerido';
-      validateStatus = false;
     }
 
-    if (!validateStatus) {
+    if (Object.keys(errores).length) {
+      validateStatus = false;
       setErrors({
         ...errores,
       });
