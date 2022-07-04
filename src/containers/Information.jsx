@@ -4,6 +4,7 @@ import AppContext from '../context/AppContext';
 import '../styles/components/Information.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import '../styles/components/ToastNotification.css';
 
 const Information = () => {
   const [errors, setErrors] = useState({});
@@ -132,7 +133,7 @@ const Information = () => {
           </div>
         ))}
       </div>
-      <ToastContainer autoClose={5000} />
+      <ToastContainer bodyClassName="toastBody" autoClose={5000} />
     </div>
   );
 };
